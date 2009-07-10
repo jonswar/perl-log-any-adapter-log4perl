@@ -10,8 +10,8 @@ perl_version '5.006';
 build_requires 'Test::Class' => 0;
 build_requires 'Test::Most'  => 0;
 
-requires 'List::MoreUtils'           => '0.13';
-requires 'Moose'                     => '0.66';
+requires 'Log::Any' => '0.01';
+requires 'Log::Log4perl' => '1.00';
 
 license 'perl';
 
