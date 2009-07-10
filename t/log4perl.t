@@ -2,7 +2,6 @@
 use File::Temp;
 use File::Slurp;
 use Log::Any;
-use Log::Any::Test::InternalOnly;
 use Test::More tests => 1;
 use Log::Log4perl;
 use strict;
