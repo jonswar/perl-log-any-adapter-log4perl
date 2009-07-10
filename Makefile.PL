@@ -7,8 +7,9 @@ author 'Jonathan Swartz <swartz@pobox.com>';
 
 perl_version '5.006';
 
+build_requires 'File::Temp'  => '0.20';
 build_requires 'Test::Class' => 0;
-build_requires 'Test::Most'  => 0;
+build_requires 'Test::More'  => 0;
 
 requires 'Log::Any' => '0.01';
 requires 'Log::Log4perl' => '1.00';
