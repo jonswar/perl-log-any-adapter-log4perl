@@ -1,5 +1,5 @@
 #!perl
-use File::Temp;
+use File::Temp (tempdir);
 use File::Slurp;
 use Log::Any;
 use Test::More tests => 1;
@@ -7,7 +7,7 @@ use Log::Log4perl;
 use strict;
 use warnings;
 
-my $dir = File::Temp->newdir();
+my $dir = tempdir('log-any-log4perl-XXXX', TMPDIR => 1, CLEANUP => 1);
 my $conf = "
 log4perl.rootLogger                = INFO, Logfile
 log4perl.appender.Logfile          = Log::Log4perl::Appender::File
