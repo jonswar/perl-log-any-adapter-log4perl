@@ -1,4 +1,4 @@
-package Log::Any::Test::InternalOnly;
+package Log::Any::Adapter::Log::Log4perl::Test::InternalOnly;
 use Test::More;
 use strict;
 use warnings;
