@@ -1,9 +1,9 @@
 #!perl
-use File::Temp (tempdir);
-use File::Slurp;
+use File::Temp qw(tempdir);
 use Log::Any;
-use Test::More tests => 1;
+use Log::Any::Util qw(read_file);
 use Log::Log4perl;
+use Test::More tests => 1;
 use strict;
 use warnings;
 
