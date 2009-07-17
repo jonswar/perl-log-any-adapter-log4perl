@@ -1,4 +1,4 @@
-package Log::Any::Adapter::Log::Log4perl;
+package Log::Any::Adapter::Log4perl;
 use Log::Log4perl;
 use strict;
 use warnings;
@@ -32,7 +32,7 @@ __END__
 
 =head1 NAME
 
-Log::Any::Adapter::Log::Log4perl
+Log::Any::Adapter::Log4perl
 
 =head1 SYNOPSIS
 
