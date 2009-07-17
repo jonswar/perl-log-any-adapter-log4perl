@@ -1,6 +1,6 @@
 use inc::Module::Install;
 
-name 'Log-Any-Adapter-Log-Log4perl';
+name 'Log-Any-Adapter-Log4perl';
 abstract 'Adapter to use Log::Log4perl with Log::Any';
 all_from 'lib/Log/Any/Adapter/Log4perl.pm';
 author 'Jonathan Swartz <swartz@pobox.com>';
