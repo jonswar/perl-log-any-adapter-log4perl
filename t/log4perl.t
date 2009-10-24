@@ -1,7 +1,7 @@
 #!perl
 use File::Temp qw(tempdir);
 use Log::Any;
-use Log::Any::Util qw(read_file);
+use Log::Any::Adapter::Util qw(read_file);
 use Log::Log4perl;
 use Test::More tests => 26;
 use strict;
