@@ -38,12 +38,13 @@ Log::Any::Adapter::Log4perl
 
     use Log::Log4perl;
     Log::Log4perl::init('/etc/log4perl.conf');
-    Log::Any->set_adapter('Log::Log4perl');
+
+    Log::Any::Adapter->set('Log::Log4perl');
 
 =head1 DESCRIPTION
 
 This Log::Any adapter uses L<Log::Log4perl|Log::Log4perl> for logging. log4perl
-must be initialized before calling I<set_adapter>. There are no parameters.
+must be initialized before calling I<set>. There are no parameters.
 
 =head1 LOG LEVEL TRANSLATION
 
@@ -57,7 +58,8 @@ Log levels are translated from Log::Any to Log4perl as follows:
 
 =head1 SEE ALSO
 
-L<Log::Any|Log::Any>, L<Log::Log4perl|Log::Log4perl>
+L<Log::Any|Log::Any>, L<Log::Any::Adapter|Log::Any::Adapter>,
+L<Log::Log4perl|Log::Log4perl>
 
 =head1 AUTHOR
 
