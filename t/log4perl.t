@@ -1,6 +1,6 @@
 #!perl
 use File::Temp qw(tempdir);
-use Log::Any;
+use Log::Any::Adapter;
 use Log::Any::Adapter::Util qw(read_file);
 use Log::Log4perl;
 use Test::More tests => 26;
@@ -16,7 +16,7 @@ log4perl.appender.Logfile.layout   = Log::Log4perl::Layout::PatternLayout
 log4perl.appender.Logfile.layout.ConversionPattern = %c; %p; %m%n
 ";
 Log::Log4perl::init( \$conf );
-Log::Any->set_adapter('Log::Log4perl');
+Log::Any::Adapter->set('Log::Log4perl');
 
 foreach my $method ( Log::Any->logging_methods, Log::Any->logging_aliases ) {
     my $log = Log::Any->get_logger( category => "category_$method" );
