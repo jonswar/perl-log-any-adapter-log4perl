@@ -38,6 +38,26 @@ foreach my $method ( Log::Any->logging_and_detection_methods() ) {
     );
 }
 
+# Override alias and printf variants to increase depth first
+#
+my %aliases = Log::Any->log_level_aliases;
+my @methods = (
+    keys(%aliases),
+    ( map { $_ . "f" } ( Log::Any->logging_methods, keys(%aliases) ) )
+);
+foreach my $method (@methods) {
+    make_method(
+        $method,
+        sub {
+            my $self = shift;
+            local $Log::Log4perl::caller_depth =
+              $Log::Log4perl::caller_depth + 2;
+            my $super_method = "SUPER::$method";
+            return $self->$super_method(@_);
+        }
+    );
+}
+
 1;
 
 __END__
