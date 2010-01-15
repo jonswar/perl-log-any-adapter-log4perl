@@ -3,7 +3,7 @@ use File::Temp qw(tempdir);
 use Log::Any::Adapter;
 use Log::Any::Adapter::Util qw(read_file);
 use Log::Log4perl;
-use Test::More tests => 26;
+use Test::More tests => 39;
 use strict;
 use warnings;
 
@@ -13,18 +13,24 @@ log4perl.rootLogger                = WARN, Logfile
 log4perl.appender.Logfile          = Log::Log4perl::Appender::File
 log4perl.appender.Logfile.filename = $dir/test.log
 log4perl.appender.Logfile.layout   = Log::Log4perl::Layout::PatternLayout
-log4perl.appender.Logfile.layout.ConversionPattern = %c; %p; %m%n
+log4perl.appender.Logfile.layout.ConversionPattern = %C:%F:%L; %c; %p; %m%n
 ";
 Log::Log4perl::init( \$conf );
 Log::Any::Adapter->set('Log::Log4perl');
 
-foreach my $method ( Log::Any->logging_methods, Log::Any->logging_aliases ) {
+my @methods = ( Log::Any->logging_methods, Log::Any->logging_aliases );
+push( @methods, ( map { $_ . "f" } @methods ) );
+
+my $next_line;
+foreach my $method (@methods) {
     my $log = Log::Any->get_logger( category => "category_$method" );
     $log->$method("logging with $method");
+    $next_line = __LINE__;
 }
+my $log_line = $next_line - 1;
 my $contents = read_file("$dir/test.log");
-foreach my $method ( Log::Any->logging_methods, Log::Any->logging_aliases ) {
-    my $level = $method;
+foreach my $method (@methods) {
+    ( my $level = $method ) =~ s/f$//;
     for ($level) {
         s/^(notice|inform)$/info/;
         s/^(warning)$/warn/;
@@ -35,7 +41,7 @@ foreach my $method ( Log::Any->logging_methods, Log::Any->logging_aliases ) {
         $level = uc($level);
         like(
             $contents,
-            qr/category_$method; $level; logging with $method\n/,
+            qr/main:.*log4perl.t:$log_line; category_$method; $level; logging with $method\n/,
             "found $method"
         );
     }
