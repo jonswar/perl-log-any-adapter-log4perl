@@ -6,7 +6,7 @@ Revision history for Log-Any-Adapter-Log4perl
 
 0.04  Jan 26, 2010
 
-- Set $Log::Log4perl::caller_depth correctly so that %C,%F,%L patterns will work
+- Set $Log::Log4perl::caller_depth correctly so that %C,%F,%L patterns will work - reported by Chris Moewes-Bystrom
 
 0.03  Oct 27, 2009
 
