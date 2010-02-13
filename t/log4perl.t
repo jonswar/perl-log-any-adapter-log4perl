@@ -3,7 +3,7 @@ use File::Temp qw(tempdir);
 use Log::Any::Adapter;
 use Log::Any::Adapter::Util qw(read_file);
 use Log::Log4perl;
-use Test::More tests => 39;
+use Test::More;
 use strict;
 use warnings;
 
@@ -21,6 +21,12 @@ Log::Any::Adapter->set('Log::Log4perl');
 my @methods = ( Log::Any->logging_methods, Log::Any->logging_aliases );
 push( @methods, ( map { $_ . "f" } @methods ) );
 
+my $test_count =
+  scalar(@methods) +
+  scalar( Log::Any->detection_methods ) +
+  scalar( Log::Any->detection_aliases );
+plan tests => $test_count;
+
 my $next_line;
 foreach my $method (@methods) {
     my $log = Log::Any->get_logger( category => "category_$method" );
@@ -37,7 +43,7 @@ foreach my $method (@methods) {
         s/^(err)$/error/;
         s/^(crit|critical|alert|emergency)$/fatal/;
     }
-    if ( $level !~ /debug|info|notice/ ) {
+    if ( $level !~ /trace|debug|info|notice/ ) {
         $level = uc($level);
         like(
             $contents,
@@ -52,7 +58,7 @@ foreach my $method (@methods) {
 my $log = Log::Any->get_logger();
 foreach my $method ( Log::Any->detection_methods, Log::Any->detection_aliases )
 {
-    if ( $method !~ /debug|info|notice/ ) {
+    if ( $method !~ /trace|debug|info|notice/ ) {
         ok( $log->$method, "$method" );
     }
     else {
