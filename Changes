@@ -2,6 +2,8 @@ Revision history for Log-Any-Adapter-Log4perl
 
 ** denotes an incompatible change
 
+0.06  Feb 13, 2010
+
 0.05  Feb 13, 2010
 
 - Fix tests to work with trace level
