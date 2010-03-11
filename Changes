@@ -4,6 +4,8 @@ Revision history for Log-Any-Adapter-Log4perl
 
 0.06  Feb 13, 2010
 
+- Fix typo in t/00-load.t - RT 54627
+
 0.05  Feb 13, 2010
 
 - Fix tests to work with trace level
