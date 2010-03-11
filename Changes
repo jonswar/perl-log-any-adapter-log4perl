@@ -2,7 +2,7 @@ Revision history for Log-Any-Adapter-Log4perl
 
 ** denotes an incompatible change
 
-0.06  Feb 13, 2010
+0.06  Mar 11, 2010
 
 - Fix typo in t/00-load.t - RT 54627
 
