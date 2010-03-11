@@ -7,5 +7,5 @@ BEGIN {
 }
 
 diag(
-    "Testing Log::Any::Adapter::Log4perl $Log::Any::Adapter::Log::Log4perl::VERSION, Perl $], $^X"
+    "Testing Log::Any::Adapter::Log4perl $Log::Any::Adapter::Log4perl::VERSION, Perl $], $^X"
 );
